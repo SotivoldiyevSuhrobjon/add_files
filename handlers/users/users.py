@@ -34,12 +34,10 @@ async def get_photo_handler(message: Message, state: FSMContext):
 
 async def get_photo(message: Message, state: FSMContext):
     photo = message.photo[0].file_id
-    print(photo)
     user_id = message.from_user.id
     await get_add_audio(user_id=user_id, file_id=photo)
     await message.answer("Rasm qoshildi")
     await state.finish()
-    # print(photo)
 
 
 async def get_files_callback(call: CallbackQuery):
