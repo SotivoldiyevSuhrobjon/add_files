@@ -42,7 +42,6 @@ async def get_photo(message: Message, state: FSMContext):
 
 async def get_files_callback(call: CallbackQuery):
     await call.answer()
-    # id = call.message.from_user.id
     users = await get_all_files(call.from_user.id)
     file_id = int(call.data.split('_')[-1])
 
@@ -50,11 +49,6 @@ async def get_files_callback(call: CallbackQuery):
         if i['id'] == file_id:
             files_id = i['file_id']
             title = i['title']
-            # print(i)
-            # print(files_id)
-            # print(title)
-            # print(f"bosildi: {i['id']}")
-            # await call.message.answer(title)
             try:
                 await call.message.answer_photo(files_id, caption=f"{i['id']}-{title}")
             except:
@@ -65,28 +59,10 @@ async def all_users_handler(message: Message):
     id = message.from_user.id
     users = await get_all_files(user_id=id)
     btn = await files_btn(users)
-    # print(btn)
     if users:
         await message.answer("Sizning faylaringiz", reply_markup=btn)
     else:
-        await message.answer(text=f"Siz fayllar mavjud emas")
-
-    # btn = await files_btn(user)
-    # await message.answer("salom", reply_markup=btn)
-    # print(user)
-    # print(btn)
-    # btn  = await files_btn(user_id=message.from_user.id)
-    # await message.answer("malumotlar", reply_markup=btn)
-    # if user:
-    #     for users in user:
-    #         user_id = users['user_id']
-    #         file_id = users['file_id']
-    #         try:
-    #             await message.answer_photo(file_id, caption="Photo")
-    #         except:
-    #             await message.answer_audio(file_id, caption="audio")
-    # else:
-    #     await message.answer(text=f"Siz fayllar mavjud emas")
+        await message.answer(text=f"Sizda fayllar mavjud emas")
 
 
 def register_users_py(dp: Dispatcher):
