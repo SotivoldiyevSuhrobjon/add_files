@@ -15,3 +15,10 @@ class Users(BaseModel):
 
     class Meta:
         db_name = 'users'
+
+class Add_files(BaseModel):
+    user_id = BigIntegerField()
+    file_id = CharField(max_length=500, null=True)
+    title = CharField(max_length=50, null=True)
+    class Meta:
+        db_name = 'files'

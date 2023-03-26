@@ -11,7 +11,7 @@ async def on_startup(dispatcher):
     # Устанавливаем дефолтные команды
     await set_default_commands(dispatcher)
 
-    register_users_py()
+    register_users_py(dispatcher)
 
 
 if __name__ == '__main__':
