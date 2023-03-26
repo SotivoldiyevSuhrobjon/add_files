@@ -10,7 +10,7 @@ async def add_user(user_id: int, username: str):
             Users.create(user_id=user_id, username=username)
 
 
-async def get_add_audio(user_id, file_id, ):
+async def get_add_audio(user_id, file_id):
     with db:
         Add_files.create(user_id=user_id, file_id=file_id)
 
